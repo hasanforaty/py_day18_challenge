@@ -52,7 +52,14 @@ def go_left(distance):
     timmy.forward(distance)
 
 
-def random_walk(length_per_walk: int, step: int):
+def random_color():
+    return (random.randint(0, 255),
+            random.randint(0, 255),
+            random.randint(0, 255)
+            )
+
+
+def random_walk(length_per_walk: int, step: int, speed=10):
     """challenge 4 :create a random walk model with our turtle"""
     current_step = 0
     moves = [
@@ -62,18 +69,19 @@ def random_walk(length_per_walk: int, step: int):
         go_right
     ]
     timmy.width(10)
+    timmy.speed(speed)
+    turtle.colormode(255)
     while current_step < step:
-        color = random.choice(color_list)
+        color = random_color()
         timmy.color(color)
         move = random.choice(moves)
         move(length_per_walk)
         current_step += 1
 
 
-
 # turtle_square(100)
 # draw_dash_line(length=200)
 # draw_shapes(100)
-random_walk(20, 1000)
+random_walk(20, 1000, speed=0)
 
 screen.exitonclick()
