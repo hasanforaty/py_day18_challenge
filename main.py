@@ -1,5 +1,6 @@
 import random
 import turtle
+
 from turtle import Turtle, Screen
 
 color_list = ['red', 'orange', 'yellow', 'green', 'blue',
@@ -41,8 +42,38 @@ def draw_shapes(length: int):
             timmy.left(angle)
 
 
+def go_right(distance):
+    timmy.right(90)
+    timmy.forward(distance)
+
+
+def go_left(distance):
+    timmy.left(90)
+    timmy.forward(distance)
+
+
+def random_walk(length_per_walk: int, step: int):
+    """challenge 4 :create a random walk model with our turtle"""
+    current_step = 0
+    moves = [
+        timmy.forward,
+        timmy.back,
+        go_left,
+        go_right
+    ]
+    timmy.width(10)
+    while current_step < step:
+        color = random.choice(color_list)
+        timmy.color(color)
+        move = random.choice(moves)
+        move(length_per_walk)
+        current_step += 1
+
+
+
 # turtle_square(100)
 # draw_dash_line(length=200)
-draw_shapes(100)
+# draw_shapes(100)
+random_walk(20, 1000)
 
 screen.exitonclick()
