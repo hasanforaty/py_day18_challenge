@@ -9,8 +9,7 @@ color_list = ['red', 'orange', 'yellow', 'green', 'blue',
 
 timmy = Turtle()
 screen = Screen()
-
-timmy.color("blue")
+turtle.colormode(255)
 
 
 def turtle_square(length: int):
@@ -70,7 +69,7 @@ def random_walk(length_per_walk: int, step: int, speed=10):
     ]
     timmy.width(10)
     timmy.speed(speed)
-    turtle.colormode(255)
+
     while current_step < step:
         color = random_color()
         timmy.color(color)
@@ -79,9 +78,22 @@ def random_walk(length_per_walk: int, step: int, speed=10):
         current_step += 1
 
 
+def draw_spirograph(size_gape):
+    """challenge 5 : draw a spirograph"""
+
+    timmy.speed(0)
+    for _ in range(int(360/size_gape)):
+        timmy.color(random_color())
+        timmy.circle(100)
+        current_head = timmy.heading()
+        timmy.setheading(current_head+size_gape)
+
+
+
 # turtle_square(100)
 # draw_dash_line(length=200)
 # draw_shapes(100)
-random_walk(20, 1000, speed=0)
+# random_walk(20, 1000, speed=0)
+draw_spirograph(5)
 
 screen.exitonclick()
